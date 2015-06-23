@@ -140,65 +140,6 @@ GLboolean m_useVBOs;
 	GLfloat projection[16];
 	GLfloat mvp[16];
 	
-#if RENDER_REFLECTION
-	
-	// Bind our refletion FBO and render our scene
-	
-	glBindFramebuffer(GL_FRAMEBUFFER, m_reflectFBOName);
-	
-	
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glViewport(0, 0, m_reflectWidth, m_reflectHeight);
-	
-	mtxLoadPerspective(projection, 90, (float)m_reflectWidth / (float)m_reflectHeight,5.0,10000);
-
-    
-	mtxLoadIdentity(modelView);
-	
-	// Invert Y so that everything is rendered up-side-down
-	// as it should with a reflection
-	
-	mtxScaleApply(modelView, 1, -1, 1);
-	mtxTranslateApply(modelView, 0, 300, -800);
-	mtxRotateXApply(modelView, -90.0f);
-    //mtxRotateYApply(modelView, m_characterAngle);
-	//mtxRotateApply(modelView, m_characterAngle, 0.7, 0.3, 1);
-	
-	mtxMultiply(mvp, projection, modelView);
-	
-	// Use the program that we previously created
-	glUseProgram(m_characterPrgName);
-	
-	// Set the modelview projection matrix that we calculated above
-	// in our vertex shader
-	glUniformMatrix4fv(m_characterMvpUniformIdx, 1, GL_FALSE, mvp);
-	
-	// Bind our vertex array object
-	glBindVertexArray(m_characterVAOName);
-	
-	// Bind the texture to be used
-	glBindTexture(GL_TEXTURE_2D, m_characterTexName);
-	
-	// Cull front faces now that everything is flipped 
-	// with our inverted reflection transformation matrix
-	glCullFace(GL_FRONT);
-	
-	// Draw our object
-	if(m_useVBOs)
-	{
-		glDrawElements(GL_TRIANGLES, m_characterNumElements, m_characterElementType, 0);
-	}
-	else 
-	{
-		glDrawElements(GL_TRIANGLES, m_characterNumElements, m_characterElementType, m_characterModel->elements);
-	}
-	
-	// Bind our default FBO to render to the screen
-	glBindFramebuffer(GL_FRAMEBUFFER, m_defaultFBOName);
-
-	glViewport(0, 0, m_viewWidth, m_viewHeight);
-	
-#endif // RENDER_REFLECTION
 	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
@@ -228,9 +169,9 @@ GLboolean m_useVBOs;
     mtxTranslateApply(modelView, pX, pY, pZ);
     
     //
-    mtxRotateYApply(modelView, self.dataObj.rotationY);
+    
     mtxRotateXApply(modelView, self.dataObj.rotationX);
-    mtxRotateYApply(modelView, self.dataObj.rotationLetter);
+    mtxRotateYApply(modelView, self.dataObj.rotationY);
     
     mtxTranslateApply(modelView, -pX, -pY, -pZ);
     
@@ -279,64 +220,6 @@ GLboolean m_useVBOs;
 	{
 		glDrawElements(GL_TRIANGLES, m_characterNumElements, m_characterElementType, m_characterModel->elements);
 	}
-	
-#if RENDER_REFLECTION
-	
-	// Use our shader for reflections
-	glUseProgram(m_reflectPrgName);
-	
-	mtxLoadTranslate(modelView, 0, -50, -250);
-	
-	// Multiply the modelview and projection matrix and set it in the shader
-	mtxMultiply(mvp, projection, modelView);
-	
-	// Set the modelview matrix that we calculated above
-	// in our vertex shader
-	glUniformMatrix4fv(m_reflectModelViewUniformIdx, 1, GL_FALSE, modelView);
-	
-	// Set the projection matrix that we calculated above
-	// in our vertex shader
-	glUniformMatrix4fv(m_reflectProjectionUniformIdx, 1, GL_FALSE, mvp);
-	
-	float normalMatrix[9];
-	
-	// Calculate the normal matrix so that we can 
-	// generate texture coordinates in our fragment shader
-	
-	// The normal matrix needs to be the inverse transpose of the 
-	//   top left 3x3 portion of the modelview matrix
-	// We don't need to calculate the inverse transpose matrix
-	//   here because this will always be an orthonormal matrix
-	//   thus the the inverse tranpose is the same thing
-	mtx3x3FromTopLeftOf4x4(normalMatrix, modelView);
-	
-	// Set the normal matrix for our shader to use
-	glUniformMatrix3fv(m_reflectNormalMatrixUniformIdx, 1, GL_FALSE, normalMatrix);
-		
-	// Bind the texture we rendered-to above (i.e. the reflection texture)
-	glBindTexture(GL_TEXTURE_2D, m_reflectTexName);
-
-#if !ESSENTIAL_GL_PRACTICES_IOS
-	// Generate mipmaps from the rendered-to base level
-	//   Mipmaps reduce shimmering pixels due to better filtering
-	// This call is not accelarated on iOS 4 so do not use
-	//   mipmaps here
-	glGenerateMipmap(GL_TEXTURE_2D);
-#endif
-	
-	// Bind our vertex array object
-	glBindVertexArray(m_reflectVAOName);
-	
-	// Draw our refection plane
-	if(m_useVBOs)
-	{
-		glDrawElements(GL_TRIANGLES, m_quadNumElements, m_quadElementType, 0);
-	}
-	else 
-	{
-		glDrawElements(GL_TRIANGLES, m_quadNumElements, m_quadElementType, m_quadModel->elements);
-	}
-#endif // RENDER_REFLECTION
 	
 	// Update the angle so our character keeps spinning
 	m_characterAngle++;

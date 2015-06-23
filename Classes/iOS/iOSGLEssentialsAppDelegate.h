@@ -46,6 +46,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <CoreMotion/CoreMotion.h>
 
 @class EAGLView;
 @class MainViewController;
@@ -53,8 +54,10 @@
 @interface iOSGLEssentialPracticesAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
 	EAGLView *glView;
+    CMMotionManager *motionManager;
 }
 
+@property (readonly) CMMotionManager *motionManager;
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet EAGLView *glView;
 @property (nonatomic, retain) IBOutlet MainViewController *mainViewController;

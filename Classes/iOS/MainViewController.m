@@ -62,211 +62,66 @@
     return self;
 }
 
+- (CMMotionManager *)motionManager
+{
+    CMMotionManager *motionManager = nil;
+    
+    id appDelegate = [UIApplication sharedApplication].delegate;
+    
+    if ([appDelegate respondsToSelector:@selector(motionManager)]) {
+        motionManager = [appDelegate motionManager];
+    }
+    
+    return motionManager;
+}
+
 - (void)viewDidLoad
 {
-    result = [[UILabel alloc] initWithFrame:CGRectMake(0.0, glView.frame.size.height - 200.0, glView.frame.size.width, 20.0)];
-    [result setTextAlignment:NSTextAlignmentCenter];
-    [result setFont:[UIFont fontWithName:@"helvetica" size:18.0]];
-    [result setTextColor:[UIColor whiteColor]];
-    [glView addSubview:result];
-    [result setHidden:YES];
-    
-    isReturning = false;
-    isSpinning = false;
-    
     glView.dataObj = [GLDataModel new];
     
     [super viewDidLoad];
     
-    glView.dataObj.rotationY = 50;
-    glView.dataObj.rotationX = 0;
+    //Y is theta
+    glView.dataObj.rotationY = 0;
+    //X is phi
+    glView.dataObj.rotationX = 45;
     
-    ctrlTimer = [NSTimer scheduledTimerWithTimeInterval:.01 target:self selector:@selector(controlLoop) userInfo:nil repeats:YES];
+    [self startMyMotionDetect];
     
-       
-    UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipeHandle:)];
-    rightRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
-    [rightRecognizer setNumberOfTouchesRequired:1];
-    
-    //add the your gestureRecognizer , where to detect the touch..
-    [self.view addGestureRecognizer:rightRecognizer];
-    [rightRecognizer release];
-    
-    UISwipeGestureRecognizer *leftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipeHandle:)];
-    leftRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
-    [leftRecognizer setNumberOfTouchesRequired:1];
-//    [leftRecognizer set]
-    
-    [self.view addGestureRecognizer:leftRecognizer];
-    [leftRecognizer release];
-    
-	// Do any additional setup after loading the view.
 }
 
-- (void)rightSwipeHandle:(UISwipeGestureRecognizer*)gestureRecognizer
+
+- (void)startMyMotionDetect
 {
-    if (!isReturning && !isFalling) {
-        startEnergy = -150;
-        startRot = glView.dataObj.rotationY;
-        glView.dataObj.rotationLetter = [self getRandomLetterRotation];
-        isSpinning = true;
-        rIterations = 0;
-        [result setHidden:YES];
-    }
-}
-
-- (void)leftSwipeHandle:(UISwipeGestureRecognizer*)gestureRecognizer
-{
-    if (!isReturning && !isFalling) {
-        startEnergy = 150;
-        startRot = glView.dataObj.rotationY;
-        glView.dataObj.rotationLetter = [self getRandomLetterRotation];
-        isSpinning = true;
-        rIterations = 0;
-        [result setHidden:YES];
-    }
-}
-
--(float)getRandomLetterRotation{
-    int r = rand()%4;
-    lastLetter = r;
-    return (float)r*90.0;
-}
-
-float dX = 0;
-float dY = 0;
-float dL = 0;
-
-float iterations = 30.0;
-float waitTime = 60.0;
-
-float spinIterations = 60.0;
-
--(void)controlLoop{
-    if (isSpinning) {
-        
-        int dx = abs(glView.dataObj.rotationY - startRot);
-        float fricForce = .04;
-        float energy = 30.0+abs(startEnergy) - dx*fricForce;
-        float speed = sqrt(energy);
-        
-        if (startEnergy > 0) {
-            glView.dataObj.rotationY = glView.dataObj.rotationY + speed;
-        }
-        else{
-            glView.dataObj.rotationY = glView.dataObj.rotationY - speed;
-        }
-        rIterations++;
-        
-        if (energy <= abs(startEnergy)) {
-            isFalling = true;
-            isSpinning = false;
-            startRot = glView.dataObj.rotationY;
-        }
-    }
-    else if (isFalling) {
-        
-        int dx = abs(glView.dataObj.rotationY - startRot);
-        float fricForce = .15;
-        float energy = abs(startEnergy) - dx*fricForce;
-        
-        if (ABS(energy) < 1) {
-            isFalling = false;
-            isReturning = true;
-            
-            float xx = (int)-glView.dataObj.rotationX % 360;
-            float yy = (int)-glView.dataObj.rotationY % 360;
-            
-            xx = xx > 0 ? xx : xx + 360.0;
-            yy = yy > 0 ? yy : yy + 360.0;
-            
-            xx = xx > 180.0 ? (xx - 360) : xx;
-            yy = yy > 180.0 ? (yy - 360) : yy;
-            
-            dX = (xx) / iterations;
-            dY = (yy) / iterations;
-            dL = 180.0 / iterations;
-            
-            rIterations = 0;
-        }
-        else{
-            float speed = sqrtf(energy);
-            if (startEnergy > 0) {
-                glView.dataObj.rotationY = glView.dataObj.rotationY + speed;
-            }
-            else{
-                glView.dataObj.rotationY = glView.dataObj.rotationY - speed;
-            }
-        }
-        
-        if (glView.dataObj.rotationX < 90.0) {
-            glView.dataObj.rotationX+=.6;
-        }
-        
-    }
-    else if(isReturning){
-        if (rIterations < waitTime) {
-            rIterations++;
-        }
-        else if (rIterations < iterations + waitTime) {
-            glView.dataObj.rotationX+=dX;
-            glView.dataObj.rotationY+=dY;
-            glView.dataObj.rotationLetter+=dL;
-            rIterations++;
-        }
-        else{
-            isReturning = false;
-            [self setDisplayToResult:lastLetter];
-        }
-    }
-}
-
--(void)setDisplayToResult:(int)res{
-    [result setHidden:NO];
-    NSString *name;
-    switch (res) {
-        case 0:
-            name = @"Nun";
-            break;
-        case 1:
-            name = @"Gimmel";
-            break;
-        case 2:
-            name = @"Shin";
-            break;
-        case 3:
-            name = @"Hay";
-            break;
-            
-        default:
-            [result setHidden:YES];
-            break;
-    }
-    [result setText:[NSString stringWithFormat:@"You spun a %@", name]];
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    if (!isReturning && !isFalling) {
-        glView.dataObj.rotationX = 0.0;
-        if ([touches count] == 1) {
-            isSpinning = false;
-            startRot = glView.dataObj.rotationY;
-            startPoint = [[touches anyObject] locationInView:self.view];
-        }
-    }
-}
-
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-    if (!isReturning && !isFalling) {
-        if ([touches count] == 1) {
-            CGPoint currentPoint = [[touches anyObject] locationInView:self.view];
-            glView.dataObj.rotationY = startRot + (startPoint.x - currentPoint.x)/1.7;
-        }
-    }
-}
-
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     
+    [self.motionManager
+     startAccelerometerUpdatesToQueue:[[NSOperationQueue alloc] init]
+     withHandler:^(CMAccelerometerData *data, NSError *error)
+     {
+         dispatch_async(dispatch_get_main_queue(),
+                        ^{
+                            float ax = data.acceleration.x;
+                            float ay = data.acceleration.y;
+                            float az = data.acceleration.z;
+//                            NSLog(@"%f, %f, %f",ax,ay,az);
+                            [self setRotationForX:0.0 Y:1.0 Z:0.0];
+                        }
+                        );
+     }
+     ];
+    
+}
+
+-(void)setRotationForX:(float)x Y:(float)y Z:(float)z{
+    float p = sqrtf(x*x+y*y+z*z);
+    float phi = acos(z/p);
+    float theta = asin(y/(p*sin(phi)));
+    
+    
+    glView.dataObj.rotationY = 180.0*theta/M_PI;
+    glView.dataObj.rotationX = 180.0*phi/M_PI;
+    
+    NSLog(@"PHI: %f, THETA: %f", phi, theta);
 }
 
 - (void)didReceiveMemoryWarning

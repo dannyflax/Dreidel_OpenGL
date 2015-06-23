@@ -46,6 +46,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <CoreMotion/CoreMotion.h>
 #import "EAGLView.h"
 @interface MainViewController : UIViewController
 {

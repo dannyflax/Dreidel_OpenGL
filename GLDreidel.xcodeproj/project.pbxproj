@@ -36,6 +36,7 @@
 		EF091E7F1AAEB80000013CFC /* dreidelTextured.obj in Resources */ = {isa = PBXBuildFile; fileRef = EF091E7E1AAEB80000013CFC /* dreidelTextured.obj */; };
 		EFBC9DE61AB67C4200496BE6 /* GLDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EFBC9DE51AB67C4200496BE6 /* GLDataModel.m */; };
 		EFF63BD51AA1A12300FDCE2B /* dreidel.obj in Resources */ = {isa = PBXBuildFile; fileRef = EFF63BD41AA1A12300FDCE2B /* dreidel.obj */; };
+		EFF8EB811B1D69ED006FFDC7 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF8EB801B1D69ED006FFDC7 /* CoreMotion.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		EFBC9DE41AB67C4200496BE6 /* GLDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLDataModel.h; path = iOS/GLDataModel.h; sourceTree = "<group>"; };
 		EFBC9DE51AB67C4200496BE6 /* GLDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLDataModel.m; path = iOS/GLDataModel.m; sourceTree = "<group>"; };
 		EFF63BD41AA1A12300FDCE2B /* dreidel.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dreidel.obj; sourceTree = "<group>"; };
+		EFF8EB801B1D69ED006FFDC7 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFF8EB811B1D69ED006FFDC7 /* CoreMotion.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -182,6 +185,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EFF8EB801B1D69ED006FFDC7 /* CoreMotion.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
