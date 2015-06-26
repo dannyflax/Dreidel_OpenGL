@@ -16,12 +16,8 @@
 		3A609E5611B9DB7700AA4C48 /* vectorUtil.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A609E4C11B9DB7700AA4C48 /* vectorUtil.c */; };
 		3A609E5911B9DB7700AA4C48 /* matrixUtil.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A609E5211B9DB7700AA4C48 /* matrixUtil.c */; };
 		3A609E5A11B9DB7700AA4C48 /* imageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A609E5311B9DB7700AA4C48 /* imageUtil.m */; };
-		3A609E6011B9DB9400AA4C48 /* reflect.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 3A609E5C11B9DB9400AA4C48 /* reflect.vsh */; };
-		3A609E6111B9DB9400AA4C48 /* reflect.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3A609E5D11B9DB9400AA4C48 /* reflect.fsh */; };
 		3A609E6211B9DB9400AA4C48 /* character.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 3A609E5E11B9DB9400AA4C48 /* character.vsh */; };
 		3A609E6311B9DB9400AA4C48 /* character.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3A609E5F11B9DB9400AA4C48 /* character.fsh */; };
-		3A609E6811B9DBE600AA4C48 /* demon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A609E6511B9DBE600AA4C48 /* demon.png */; };
-		3A609E6911B9DBE600AA4C48 /* demon.model in Resources */ = {isa = PBXBuildFile; fileRef = 3A609E6611B9DBE600AA4C48 /* demon.model */; };
 		3A609EB911B9DCF200AA4C48 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A609EB811B9DCF200AA4C48 /* QuartzCore.framework */; };
 		3A7DCEBE14BE4E9C00C51D27 /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7DCEBD14BE4E9C00C51D27 /* EAGLView.m */; };
 		3AC5C4A816693B6C00FEE565 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC5C4A716693B6C00FEE565 /* Default-568h@2x.png */; };
@@ -31,11 +27,9 @@
 		3AE9119712CAF36A005ED635 /* sourceUtil.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AE9119612CAF36A005ED635 /* sourceUtil.c */; };
 		537E51341635EC17003EA7BA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 537E51331635EC17003EA7BA /* MainViewController.m */; };
 		9E148C8916E16187001BA26D /* modelUtil.c in Sources */ = {isa = PBXBuildFile; fileRef = 9E148C8816E16187001BA26D /* modelUtil.c */; };
-		9E148C8D16E16514001BA26D /* monkey.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9E148C8C16E16514001BA26D /* monkey.obj */; };
 		EF091E7B1AAEB55F00013CFC /* DreidelTextureMap.png in Resources */ = {isa = PBXBuildFile; fileRef = EF091E7A1AAEB55F00013CFC /* DreidelTextureMap.png */; };
 		EF091E7F1AAEB80000013CFC /* dreidelTextured.obj in Resources */ = {isa = PBXBuildFile; fileRef = EF091E7E1AAEB80000013CFC /* dreidelTextured.obj */; };
 		EFBC9DE61AB67C4200496BE6 /* GLDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EFBC9DE51AB67C4200496BE6 /* GLDataModel.m */; };
-		EFF63BD51AA1A12300FDCE2B /* dreidel.obj in Resources */ = {isa = PBXBuildFile; fileRef = EFF63BD41AA1A12300FDCE2B /* dreidel.obj */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,12 +51,8 @@
 		3A609E5311B9DB7700AA4C48 /* imageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = imageUtil.m; path = UtilSrc/imageUtil.m; sourceTree = "<group>"; };
 		3A609E5411B9DB7700AA4C48 /* imageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imageUtil.h; path = UtilSrc/imageUtil.h; sourceTree = "<group>"; };
 		3A609E5511B9DB7700AA4C48 /* glUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = glUtil.h; path = UtilSrc/glUtil.h; sourceTree = "<group>"; };
-		3A609E5C11B9DB9400AA4C48 /* reflect.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = reflect.vsh; path = Shaders/reflect.vsh; sourceTree = "<group>"; };
-		3A609E5D11B9DB9400AA4C48 /* reflect.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = reflect.fsh; path = Shaders/reflect.fsh; sourceTree = "<group>"; };
 		3A609E5E11B9DB9400AA4C48 /* character.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = character.vsh; path = Shaders/character.vsh; sourceTree = "<group>"; };
 		3A609E5F11B9DB9400AA4C48 /* character.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = character.fsh; path = Shaders/character.fsh; sourceTree = "<group>"; };
-		3A609E6511B9DBE600AA4C48 /* demon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = demon.png; path = Resources/demon.png; sourceTree = "<group>"; };
-		3A609E6611B9DBE600AA4C48 /* demon.model */ = {isa = PBXFileReference; lastKnownFileType = file; name = demon.model; path = Resources/demon.model; sourceTree = "<group>"; };
 		3A609EB811B9DCF200AA4C48 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3A7DCEBC14BE4E9C00C51D27 /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EAGLView.h; path = iOS/EAGLView.h; sourceTree = "<group>"; };
 		3A7DCEBD14BE4E9C00C51D27 /* EAGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EAGLView.m; path = iOS/EAGLView.m; sourceTree = "<group>"; };
@@ -77,13 +67,11 @@
 		537E51331635EC17003EA7BA /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = iOS/MainViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* GLDreidel-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GLDreidel-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9E148C8816E16187001BA26D /* modelUtil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = modelUtil.c; sourceTree = "<group>"; };
-		9E148C8C16E16514001BA26D /* monkey.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = monkey.obj; sourceTree = "<group>"; };
 		AF31B2271301C52D006A0A99 /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
 		EF091E7A1AAEB55F00013CFC /* DreidelTextureMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DreidelTextureMap.png; sourceTree = "<group>"; };
 		EF091E7E1AAEB80000013CFC /* dreidelTextured.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dreidelTextured.obj; sourceTree = "<group>"; };
 		EFBC9DE41AB67C4200496BE6 /* GLDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLDataModel.h; path = iOS/GLDataModel.h; sourceTree = "<group>"; };
 		EFBC9DE51AB67C4200496BE6 /* GLDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLDataModel.m; path = iOS/GLDataModel.m; sourceTree = "<group>"; };
-		EFF63BD41AA1A12300FDCE2B /* dreidel.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dreidel.obj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,11 +157,7 @@
 			children = (
 				EF091E7E1AAEB80000013CFC /* dreidelTextured.obj */,
 				EF091E7A1AAEB55F00013CFC /* DreidelTextureMap.png */,
-				EFF63BD41AA1A12300FDCE2B /* dreidel.obj */,
 				3AE0447513D624E400F51EF4 /* MainWindow.xib */,
-				9E148C8C16E16514001BA26D /* monkey.obj */,
-				3A609E6511B9DBE600AA4C48 /* demon.png */,
-				3A609E6611B9DBE600AA4C48 /* demon.model */,
 				8D1107310486CEB800E47090 /* GLDreidel-Info.plist */,
 			);
 			name = Resources;
@@ -194,8 +178,6 @@
 		3A609E5B11B9DB7A00AA4C48 /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
-				3A609E5C11B9DB9400AA4C48 /* reflect.vsh */,
-				3A609E5D11B9DB9400AA4C48 /* reflect.fsh */,
 				3A609E5E11B9DB9400AA4C48 /* character.vsh */,
 				3A609E5F11B9DB9400AA4C48 /* character.fsh */,
 			);
@@ -259,18 +241,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A609E6811B9DBE600AA4C48 /* demon.png in Resources */,
-				3A609E6911B9DBE600AA4C48 /* demon.model in Resources */,
-				3A609E6011B9DB9400AA4C48 /* reflect.vsh in Resources */,
 				EF091E7B1AAEB55F00013CFC /* DreidelTextureMap.png in Resources */,
-				3A609E6111B9DB9400AA4C48 /* reflect.fsh in Resources */,
 				3A609E6211B9DB9400AA4C48 /* character.vsh in Resources */,
 				EF091E7F1AAEB80000013CFC /* dreidelTextured.obj in Resources */,
 				3A609E6311B9DB9400AA4C48 /* character.fsh in Resources */,
 				3AE0447613D624E400F51EF4 /* MainWindow.xib in Resources */,
-				EFF63BD51AA1A12300FDCE2B /* dreidel.obj in Resources */,
 				3AC5C4A816693B6C00FEE565 /* Default-568h@2x.png in Resources */,
-				9E148C8D16E16514001BA26D /* monkey.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

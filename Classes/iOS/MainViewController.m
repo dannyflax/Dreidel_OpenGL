@@ -95,7 +95,6 @@
     UISwipeGestureRecognizer *leftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipeHandle:)];
     leftRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
     [leftRecognizer setNumberOfTouchesRequired:1];
-//    [leftRecognizer set]
     
     [self.view addGestureRecognizer:leftRecognizer];
     [leftRecognizer release];
@@ -145,9 +144,9 @@ float spinIterations = 60.0;
 -(void)controlLoop{
     if (isSpinning) {
         
-        int dx = abs(glView.dataObj.rotationY - startRot);
+        int dx = fabsf(glView.dataObj.rotationY - startRot);
         float fricForce = .04;
-        float energy = 30.0+abs(startEnergy) - dx*fricForce;
+        float energy = 30.0+fabsf(startEnergy) - dx*fricForce;
         float speed = sqrt(energy);
         
         if (startEnergy > 0) {
@@ -158,7 +157,7 @@ float spinIterations = 60.0;
         }
         rIterations++;
         
-        if (energy <= abs(startEnergy)) {
+        if (energy <= fabsf(startEnergy)) {
             isFalling = true;
             isSpinning = false;
             startRot = glView.dataObj.rotationY;
@@ -166,9 +165,9 @@ float spinIterations = 60.0;
     }
     else if (isFalling) {
         
-        int dx = abs(glView.dataObj.rotationY - startRot);
+        int dx = fabsf(glView.dataObj.rotationY - startRot);
         float fricForce = .15;
-        float energy = abs(startEnergy) - dx*fricForce;
+        float energy = fabsf(startEnergy) - dx*fricForce;
         
         if (ABS(energy) < 1) {
             isFalling = false;
